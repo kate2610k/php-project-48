@@ -1,5 +1,7 @@
 {
     "name": "hexlet/code",
+    "description": "Hexlet project",
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
@@ -16,5 +18,5 @@
     },
     "bin": [
       "bin/gendiff"
-    ] 
+    ]
 }
