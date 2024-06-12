@@ -1,0 +1,11 @@
+lint:
+	composer exec --verbose phpcs -- --standard=PSR12 bin src tests
+
+test:
+	composer exec --verbose phpunit tests
+
+install:
+	composer install
+
+test-coverage:
+	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-text
