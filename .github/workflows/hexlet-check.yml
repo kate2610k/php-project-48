@@ -23,6 +23,14 @@ jobs:
 
       - name: Hexlet project check
         uses: hexlet/project-action@release
-
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
+
+
+      - uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.TEST_COVERAGE_ID }}
+        with:
+          coverageCommand: make test-coverage
+          coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
+          debug: true
