@@ -19,9 +19,9 @@ jobs:
     - run: make test
     - run: make test-coverage
 
-      - name: Code Climate Coverage Action
-        uses: paambaati/codeclimate-action@v3.0.0
-        env:
+    - name: Code Climate Coverage Action
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
         CC_TEST_REPORTER_ID: ${{ secrets.TEST_COVERAGE_ID }}
       with:
         coverageCommand: make test-coverage
