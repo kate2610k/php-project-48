@@ -7,7 +7,8 @@
             "Hexlet\\Code\\": "src/"
         },
         "files": [
-            "src/Gendiff.php"
+            "src/Gendiff.php",
+            "src/Parser.php"
         ]
     },
     "authors": [
@@ -17,7 +18,8 @@
         }
     ],
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "symfony/yaml": "^6.4"
     },
     "bin": [
       "bin/gendiff"

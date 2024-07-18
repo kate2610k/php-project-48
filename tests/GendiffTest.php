@@ -15,5 +15,12 @@ class GendiffTest extends TestCase
         //$file2 = __DIR__ . "/fixtures/file2.json";
         $result = genDiff(__DIR__ . "/fixtures/file1.json", __DIR__ . "/fixtures/file2.json");
         $this->assertEquals($expected, $result);
+
+
+        //$expected = file_get_contents(__DIR__ . "/fixtures/expected.txt");
+        //$file1 = __DIR__ . "/fixtures/file1.json";
+        //$file2 = __DIR__ . "/fixtures/file2.json";
+        $result = genDiff(__DIR__ . "/fixtures/file11.yaml", __DIR__ . "/fixtures/file21.yaml");
+        $this->assertEquals($expected, $result);
     }
 }
