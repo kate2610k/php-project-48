@@ -7,14 +7,12 @@ use Symfony\Component\Yaml\Yaml;
 function parse($file)
 {
     $name = $file;
-    $file = file_get_contents($file);
-    $format = explode('.', $name);
-    $format = $format[1];
+    $content = file_get_contents($file);
+    $extension = explode('.', $name);
+    $extension = $extension[1];
 
-    if ($format == 'yml' || $format == 'yaml') {
-        $file = Yaml::parse($file);
-        return $file;
+    if ($extension == 'yml' || $extension == 'yaml') {
+        return Yaml::parse($content);
     }
-    $fileDecode = json_decode($file, true);
-    return $fileDecode;
+    return json_decode($content, true);
 }
