@@ -3,7 +3,7 @@
 namespace Differ\Differ;
 
 use function Differ\Parser\parse;
-use function Differ\Stylish\format;
+use function Differ\Formatters\format;
 
 function genDiff($file1, $file2, $format = "stylish")
 {
@@ -11,8 +11,8 @@ function genDiff($file1, $file2, $format = "stylish")
     $fileDecode2 = parse($file2);
 
     $result = findDifferences($fileDecode1, $fileDecode2);
-    $result = format($result);
-    return "{\n{$result}}\n";
+    $result = format($result, $format);
+    return $result;
 }
 
 function findDifferences($fileDecode1, $fileDecode2)

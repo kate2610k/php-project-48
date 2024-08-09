@@ -33,6 +33,7 @@ $args = Docopt::handle($doc);
 
 $file1 = realpath($args['<firstFile>']);
 $file2 = realpath($args['<secondFile>']);
+$format = $args['--format'];
 
-$diff = genDiff($file1, $file2);
-echo $diff;
+$result = genDiff($file1, $file2, $format);
+echo $result;

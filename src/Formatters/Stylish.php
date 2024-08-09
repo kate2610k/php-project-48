@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\Stylish;
+namespace Differ\Formatters\Stylish;
 
 const INDENT = 4;
 
