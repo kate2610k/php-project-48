@@ -4,7 +4,7 @@ namespace Differ\Parser;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parse($file)
+function parse(string $file)
 {
     $name = $file;
     $content = file_get_contents($file);

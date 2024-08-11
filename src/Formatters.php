@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters;
 
-function format($tree, $format)
+function format(array $tree, string $format)
 {
     switch ($format) {
         case "stylish":

@@ -4,7 +4,7 @@ namespace Differ\Formatters\Stylish;
 
 const INDENT = 4;
 
-function format($tree, $countIndents = 0)
+function format(array $tree, int $countIndents = 0)
 {
     $totalIndent = str_repeat(" ", $countIndents * INDENT);
     $result = array_map(function ($node) use ($totalIndent, $countIndents) {
@@ -14,46 +14,46 @@ function format($tree, $countIndents = 0)
                 $result1 = format($node['children'], $countIndents1);
                 return "{$totalIndent}    {$node['key']}: {\n{$result1}{$totalIndent}    }\n";
             case 'first':
-                $num = arrayToString($node['value'], $countIndents);
+                $num = valueToString($node['value'], $countIndents);
                 return "{$totalIndent}  - {$node['key']}:{$num}\n";
             case 'second':
-                $num = arrayToString($node['value'], $countIndents);
+                $num = valueToString($node['value'], $countIndents);
                 return "{$totalIndent}  + {$node['key']}:{$num}\n";
             case 'equivalent':
-                $num = arrayToString($node['value'], $countIndents);
+                $num = valueToString($node['value'], $countIndents);
                 return "{$totalIndent}    {$node['key']}:{$num}\n";
             case 'different':
-                $num1 = arrayToString($node['value1'], $countIndents);
-                $num2 = arrayToString($node['value2'], $countIndents);
+                $num1 = valueToString($node['value1'], $countIndents);
+                $num2 = valueToString($node['value2'], $countIndents);
                 return "{$totalIndent}  - {$node['key']}:{$num1}\n{$totalIndent}  + {$node['key']}:{$num2}\n";
         }
     }, $tree);
     return implode("", $result);
 }
 
-function arrayToString($array, $countIndents)
+function valueToString(mixed $value, int $countIndents)
 {
-    if (is_null($array)) {
+    if (is_null($value)) {
         return ' null';
     }
-    if (is_bool($array)) {
-        return $array ? ' true' : ' false';
+    if (is_bool($value)) {
+        return $value ? ' true' : ' false';
     }
-    if ($array == '') {
+    if ($value == '') {
         return '';
     }
-    if (!is_array($array)) {
-        return " {$array}";
+    if (!is_array($value)) {
+        return " {$value}";
     }
     $totalIndent = str_repeat(" ", ($countIndents) * INDENT);
-    $allKeys = array_keys($array);
-    $result = array_map(function ($key) use ($countIndents, $totalIndent, $array) {
+    $allKeys = array_keys($value);
+    $result = array_map(function ($key) use ($countIndents, $totalIndent, $value) {
         $countIndents1 = $countIndents + 1;
-        if (is_array($array[$key])) {
-            $result1 = arrayToString($array[$key], $countIndents1);
+        if (is_array($value[$key])) {
+            $result1 = valueToString($value[$key], $countIndents1);
             return "{$totalIndent}        {$key}:{$result1}\n";
         }
-        return "{$totalIndent}        {$key}: {$array[$key]}\n";
+        return "{$totalIndent}        {$key}: {$value[$key]}\n";
     }, $allKeys);
     $result = implode("", $result);
     return " {\n{$result}{$totalIndent}    }";

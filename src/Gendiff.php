@@ -5,7 +5,7 @@ namespace Differ\Differ;
 use function Differ\Parser\parse;
 use function Differ\Formatters\format;
 
-function genDiff($file1, $file2, $format = "stylish")
+function genDiff(string $file1, string $file2, string $format = "stylish")
 {
     $fileDecode1 = parse($file1);
     $fileDecode2 = parse($file2);
@@ -14,7 +14,7 @@ function genDiff($file1, $file2, $format = "stylish")
     return format($result, $format);
 }
 
-function findDifferences($fileDecode1, $fileDecode2)
+function findDifferences(array $fileDecode1, array $fileDecode2)
 {
     $allKeys = array_merge($fileDecode1, $fileDecode2);
     ksort($allKeys);
