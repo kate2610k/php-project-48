@@ -5,3 +5,5 @@
 
 ### Step 3
 https://asciinema.org/a/qUho4Uc2TkklVILhl71qVKC4C
+
+### Setup
