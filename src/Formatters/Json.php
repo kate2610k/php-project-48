@@ -14,33 +14,28 @@ function format(array $tree, int $countIndents = 1)
         switch ($node['type']) {
             case 'parent':
                 $result1 = format($node['children'], $countIndents1);
-                $result2 = implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
                 "{$totalIndent}\"type\": \"parent\",",
                 "{$totalIndent}\"children\": {\n{$result1}{$totalIndent}}\n{$totalIndent1}}\n"]);
-                return $result2;
             case 'first':
                 $num = valueToString($node['value'], $countIndents);
-                $result2 = implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
                 "{$totalIndent}\"type\": \"removed\",\n{$totalIndent}\"value\": {$num}",
                 "{$totalIndent1}}\n"]);
-                return $result2;
             case 'second':
                 $num = valueToString($node['value'], $countIndents);
-                $result2 = implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
                 "{$totalIndent}\"type\": \"added\",\n{$totalIndent}\"value\": {$num}\n{$totalIndent1}}\n"]);
-                return $result2;
             case 'equivalent':
                 $num = valueToString($node['value'], $countIndents);
-                $result2 = implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
                 "{$totalIndent}\"type\": \"unchanged\",\n{$totalIndent}\"value\": {$num}\n{$totalIndent1}}\n"]);
-                return $result2;
             case 'different':
                 $num1 = valueToString($node['value1'], $countIndents);
                 $num2 = valueToString($node['value2'], $countIndents);
-                $result2 = implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
                 "{$totalIndent}\"type\": \"updated\",\n{$totalIndent}\"value1\": {$num1},",
                 "{$totalIndent}\"value2\": {$num2}\n{$totalIndent1}}\n"]);
-                return $result2;
         }
     }, $tree);
     return implode("", $result);
