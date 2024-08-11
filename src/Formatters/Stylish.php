@@ -11,9 +11,8 @@ function format($tree, $countIndents = 0)
         $countIndents1 = $countIndents + 1;
         switch ($node['type']) {
             case 'parent':
-                return "{$totalIndent}    {$node['key']}: {\n"
-                 . format($node['children'], $countIndents1)
-                 . "{$totalIndent}    }\n";
+                $result1 = format($node['children'], $countIndents1);
+                return "{$totalIndent}    {$node['key']}: {\n{$result1}{$totalIndent}    }\n";
             case 'first':
                 $num = arrayToString($node['value'], $countIndents);
                 return "{$totalIndent}  - {$node['key']}:{$num}\n";
@@ -46,10 +45,8 @@ function arrayToString($array, $countIndents)
     if (!is_array($array)) {
         return " {$array}";
     }
-
     $totalIndent = str_repeat(" ", ($countIndents) * INDENT);
     $allKeys = array_keys($array);
-
     $result = array_map(function ($key) use ($countIndents, $totalIndent, $array) {
         $countIndents1 = $countIndents + 1;
         if (is_array($array[$key])) {
@@ -58,7 +55,6 @@ function arrayToString($array, $countIndents)
         }
         return "{$totalIndent}        {$key}: {$array[$key]}\n";
     }, $allKeys);
-
     $result = implode("", $result);
     return " {\n{$result}{$totalIndent}    }";
 }

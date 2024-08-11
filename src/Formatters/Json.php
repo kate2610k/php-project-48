@@ -13,22 +13,29 @@ function format($tree, $countIndents = 1)
         $countIndents1 = $countIndents + 2;
         switch ($node['type']) {
             case 'parent':
-                return "{$totalIndent1}\"{$node['key']}\": {\n{$totalIndent}\"type\": \"parent\",\n{$totalIndent}\"children\": {\n"
-                 . format($node['children'], $countIndents1)
-                 . "{$totalIndent}}\n{$totalIndent1}}\n";
+                $result1 = format($node['children'], $countIndents1);
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                "{$totalIndent}\"type\": \"parent\",",
+                "{$totalIndent}\"children\": {\n{$result1}{$totalIndent}}\n{$totalIndent1}}\n"]);
             case 'first':
                 $num = arrayToString($node['value'], $countIndents);
-                return "{$totalIndent1}\"{$node['key']}\": {\n{$totalIndent}\"type\": \"removed\",\n{$totalIndent}\"value\": {$num}\n{$totalIndent1}}\n";
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                "{$totalIndent}\"type\": \"removed\",\n{$totalIndent}\"value\": {$num}",
+                "{$totalIndent1}}\n"]);
             case 'second':
                 $num = arrayToString($node['value'], $countIndents);
-                return "{$totalIndent1}\"{$node['key']}\": {\n{$totalIndent}\"type\": \"added\",\n{$totalIndent}\"value\": {$num}\n{$totalIndent1}}\n";
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                "{$totalIndent}\"type\": \"added\",\n{$totalIndent}\"value\": {$num}\n{$totalIndent1}}\n"]);
             case 'equivalent':
                 $num = arrayToString($node['value'], $countIndents);
-                return "{$totalIndent1}\"{$node['key']}\": {\n{$totalIndent}\"type\": \"unchanged\",\n{$totalIndent}\"value\": {$num}\n{$totalIndent1}}\n";
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                "{$totalIndent}\"type\": \"unchanged\",\n{$totalIndent}\"value\": {$num}\n{$totalIndent1}}\n"]);
             case 'different':
                 $num1 = arrayToString($node['value1'], $countIndents);
                 $num2 = arrayToString($node['value2'], $countIndents);
-                return "{$totalIndent1}\"{$node['key']}\": {\n{$totalIndent}\"type\": \"updated\",\n{$totalIndent}\"value1\": {$num1},\n{$totalIndent}\"value2\": {$num2}\n{$totalIndent1}}\n";
+                return implode("\n", ["{$totalIndent1}\"{$node['key']}\": {",
+                "{$totalIndent}\"type\": \"updated\",\n{$totalIndent}\"value1\": {$num1},",
+                "{$totalIndent}\"value2\": {$num2}\n{$totalIndent1}}\n"]);
         }
     }, $tree);
     return implode("", $result);
@@ -51,10 +58,8 @@ function arrayToString($array, $countIndents)
     if (!is_array($array)) {
         return "\"{$array}\"";
     }
-
     $totalIndent = str_repeat(" ", ($countIndents) * INDENT);
     $allKeys = array_keys($array);
-
     $result = array_map(function ($key) use ($countIndents, $totalIndent, $array) {
         $countIndents1 = $countIndents + 1;
         $result1 = arrayToString($array[$key], $countIndents1);

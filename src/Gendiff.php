@@ -12,7 +12,6 @@ function genDiff($file1, $file2, $format = "stylish")
 
     $result = findDifferences($fileDecode1, $fileDecode2);
     return format($result, $format);
-    
 }
 
 function findDifferences($fileDecode1, $fileDecode2)
