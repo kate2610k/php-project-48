@@ -29,5 +29,9 @@ class GendiffTest extends TestCase
         $expected = file_get_contents(__DIR__ . "/fixtures/expected2.txt");
         $result = genDiff(__DIR__ . "/fixtures/file11.yaml", __DIR__ . "/fixtures/file21.yaml", "plain");
         $this->assertEquals($expected, $result);
+
+        $expected = file_get_contents(__DIR__ . "/fixtures/expected3.txt");
+        $result = genDiff(__DIR__ . "/fixtures/file11.yaml", __DIR__ . "/fixtures/file21.yaml", "json");
+        $this->assertEquals($expected, $result);
     }
 }
