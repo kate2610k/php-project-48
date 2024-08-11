@@ -4,11 +4,8 @@ namespace Differ\Formatters\Stylish;
 
 const INDENT = 4;
 
-function format($differences, $countIndents = 0)
+function format($tree, $countIndents = 0)
 {
-    if (!is_array($differences)) {
-        return;
-    }
     $totalIndent = str_repeat(" ", $countIndents * INDENT);
     $result = array_map(function ($node) use ($totalIndent, $countIndents) {
         $countIndents1 = $countIndents + 1;
@@ -31,7 +28,7 @@ function format($differences, $countIndents = 0)
                 $num2 = arrayToString($node['value2'], $countIndents);
                 return "{$totalIndent}  - {$node['key']}:{$num1}\n{$totalIndent}  + {$node['key']}:{$num2}\n";
         }
-    }, $differences);
+    }, $tree);
     return implode("", $result);
 }
 

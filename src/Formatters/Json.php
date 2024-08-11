@@ -5,18 +5,12 @@ namespace Differ\Formatters\Json;
 const INDENT = 2;
 
 
-function format($differences, $countIndents = 1)
+function format($tree, $countIndents = 1)
 {
-    if (!is_array($differences)) {
-        return;
-    }
     $totalIndent = str_repeat(" ", ($countIndents + 1) * INDENT);
     $totalIndent1 = str_repeat(" ", ($countIndents) * INDENT);
-    $saveCount = 0;
     $result = array_map(function ($node) use ($totalIndent, $totalIndent1, $countIndents) {
-        
         $countIndents1 = $countIndents + 2;
-        
         switch ($node['type']) {
             case 'parent':
                 return "{$totalIndent1}\"{$node['key']}\": {\n{$totalIndent}\"type\": \"parent\",\n{$totalIndent}\"children\": {\n"
@@ -36,7 +30,7 @@ function format($differences, $countIndents = 1)
                 $num2 = arrayToString($node['value2'], $countIndents);
                 return "{$totalIndent1}\"{$node['key']}\": {\n{$totalIndent}\"type\": \"updated\",\n{$totalIndent}\"value1\": {$num1},\n{$totalIndent}\"value2\": {$num2}\n{$totalIndent1}}\n";
         }
-    }, $differences);
+    }, $tree);
     return implode("", $result);
 }
 

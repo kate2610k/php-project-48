@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Plain;
 
-function format($differences, $way = '')
+function format($tree, $way = '')
 {
     $result = array_map(function ($node) use ($way) {
         $way1 = "{$way}.{$node['key']}";
@@ -24,7 +24,7 @@ function format($differences, $way = '')
                 $way1 = mb_substr($way1, 1);
                 return "Property '{$way1}' was updated. From {$num1} to {$num2}\n";
         }
-    }, $differences);
+    }, $tree);
     return implode("", $result);
 }
 

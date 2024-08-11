@@ -11,8 +11,8 @@ function genDiff($file1, $file2, $format = "stylish")
     $fileDecode2 = parse($file2);
 
     $result = findDifferences($fileDecode1, $fileDecode2);
-    $result = format($result, $format);
-    return $result;
+    return format($result, $format);
+    
 }
 
 function findDifferences($fileDecode1, $fileDecode2)
@@ -20,7 +20,6 @@ function findDifferences($fileDecode1, $fileDecode2)
     $allKeys = array_merge($fileDecode1, $fileDecode2);
     ksort($allKeys);
     $allKeys = array_keys($allKeys);
-
     return array_map(function ($key) use ($fileDecode1, $fileDecode2) {
         switch (true) {
             case !array_key_exists($key, $fileDecode1):
