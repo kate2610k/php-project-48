@@ -10,19 +10,19 @@ function format(array $tree, string $way = '')
             case 'parent':
                 return format($node['children'], $way1);
             case 'first':
-                $way1 = mb_substr($way1, 1);
-                return "Property '{$way1}' was removed\n";
+                $way2 = mb_substr($way1, 1);
+                return "Property '{$way2}' was removed\n";
             case 'second':
                 $num = valueToString($node['value']);
-                $way1 = mb_substr($way1, 1);
-                return "Property '{$way1}' was added with value: {$num}\n";
+                $way2 = mb_substr($way1, 1);
+                return "Property '{$way2}' was added with value: {$num}\n";
             case 'equivalent':
                 return;
             case 'different':
                 $num1 = valueToString($node['value1']);
                 $num2 = valueToString($node['value2']);
-                $way1 = mb_substr($way1, 1);
-                return "Property '{$way1}' was updated. From {$num1} to {$num2}\n";
+                $way2 = mb_substr($way1, 1);
+                return "Property '{$way2}' was updated. From {$num1} to {$num2}\n";
         }
     }, $tree);
     return implode("", $result);

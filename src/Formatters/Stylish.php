@@ -55,6 +55,6 @@ function valueToString(mixed $value, int $countIndents)
         }
         return "{$totalIndent}        {$key}: {$value[$key]}\n";
     }, $allKeys);
-    $result = implode("", $result);
-    return " {\n{$result}{$totalIndent}    }";
+    $result2 = implode("", $result);
+    return " {\n{$result2}{$totalIndent}    }";
 }

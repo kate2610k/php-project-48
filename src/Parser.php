@@ -6,10 +6,8 @@ use Symfony\Component\Yaml\Yaml;
 
 function parse(string $file)
 {
-    $name = $file;
-    $content = file_get_contents($file);
-    $extension = explode('.', $name);
-    $extension = $extension[1];
+    $extension = pathinfo($file, PATHINFO_EXTENSION);
+    $content = file_get_contents($file, true);
 
     if ($extension == 'yml' || $extension == 'yaml') {
         return Yaml::parse($content);

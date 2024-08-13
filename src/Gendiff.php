@@ -4,6 +4,7 @@ namespace Differ\Differ;
 
 use function Differ\Parser\parse;
 use function Differ\Formatters\format;
+use function Functional\sort;
 
 function genDiff(string $file1, string $file2, string $format = "stylish")
 {
@@ -16,9 +17,8 @@ function genDiff(string $file1, string $file2, string $format = "stylish")
 
 function findDifferences(array $fileDecode1, array $fileDecode2)
 {
-    $allKeys = array_merge($fileDecode1, $fileDecode2);
-    ksort($allKeys);
-    $allKeys = array_keys($allKeys);
+    $allKeys = array_merge(array_keys($fileDecode1), array_keys($fileDecode2));
+    $allKeys1 = array_unique(sort($allKeys, fn ($left, $right) => strcmp($left, $right)));
     return array_map(function ($key) use ($fileDecode1, $fileDecode2) {
         switch (true) {
             case !array_key_exists($key, $fileDecode1):
@@ -37,5 +37,5 @@ function findDifferences(array $fileDecode1, array $fileDecode2)
                     'type' => 'different'
                 ];
         }
-    }, $allKeys);
+    }, $allKeys1);
 }
