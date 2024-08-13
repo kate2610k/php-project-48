@@ -19,17 +19,17 @@ The project allows you to detect differences between two files. You can compare 
 	make install
 
 ### Comparing Flat Files (JSON)
-https://asciinema.org/a/qUho4Uc2TkklVILhl71qVKC4C
+[![asciicast](https://asciinema.org/a/qUho4Uc2TkklVILhl71qVKC4C.svg)](https://asciinema.org/a/qUho4Uc2TkklVILhl71qVKC4C)
 
 ### Comparing Flat Files (yaml)
-https://asciinema.org/a/iwz1LHMP6OjSfb029qY1CuZL6
+[![asciicast](https://asciinema.org/a/iwz1LHMP6OjSfb029qY1CuZL6.svg)](https://asciinema.org/a/iwz1LHMP6OjSfb029qY1CuZL6)
 
 ### Recursive comparison
-https://asciinema.org/a/UEO1rsgtB0qYpvuDflRHwGf3d
+[![asciicast](https://asciinema.org/a/UEO1rsgtB0qYpvuDflRHwGf3d.svg)](https://asciinema.org/a/UEO1rsgtB0qYpvuDflRHwGf3d)
 
 ### Flat format for recursive comparison
-https://asciinema.org/a/gmxY0VKMRSRi5LzoCgds1PFUL
+[![asciicast](https://asciinema.org/a/gmxY0VKMRSRi5LzoCgds1PFUL.svg)](https://asciinema.org/a/gmxY0VKMRSRi5LzoCgds1PFUL)
 
 ### Output to JSON
-https://asciinema.org/a/SHgKNLs9ASrU3ZO7BskShixht
+[![asciicast](https://asciinema.org/a/SHgKNLs9ASrU3ZO7BskShixht.svg)](https://asciinema.org/a/SHgKNLs9ASrU3ZO7BskShixht)
 
