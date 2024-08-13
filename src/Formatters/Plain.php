@@ -39,6 +39,9 @@ function valueToString(mixed $value)
     if ($value == '') {
         return "''";
     }
+    if (is_numeric($value)) {
+        return "{$value}";
+    }
     if (!is_array($value)) {
         return "'{$value}'";
     }
