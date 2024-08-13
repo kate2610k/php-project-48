@@ -10,6 +10,6 @@ function format(array $tree, string $format)
         case "plain":
             return Plain\format($tree);
         case "json":
-            return "{\n" . Json\format($tree) . "}\n";
+            return "{" . Json\format($tree) . "}\n";
     }
 }
