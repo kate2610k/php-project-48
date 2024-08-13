@@ -6,10 +6,12 @@ function format(array $tree, string $format)
 {
     switch ($format) {
         case "stylish":
-            return "{\n" . Stylish\format($tree) . "}\n";
+            $result = Stylish\format($tree);
+            return "{\n{$result}}\n";
         case "plain":
             return Plain\format($tree);
         case "json":
-            return "{" . Json\format($tree) . "}\n";
+            $result = Json\format($tree);
+            return  "{$result}\n";
     }
 }
