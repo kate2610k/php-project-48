@@ -40,7 +40,7 @@ function valueToString(mixed $value, int $countIndents)
         return $value ? ' true' : ' false';
     }
     if ($value == '') {
-        return '';
+        return ' ';
     }
     if (!is_array($value)) {
         return " {$value}";
